@@ -31,14 +31,14 @@ public class TaskList {
     }
   }
 
-  public TaskList(Prevayler<Tasks> prevayler, BufferedReader reader, PrintWriter writer) {
+  TaskList(Prevayler<Tasks> prevayler, BufferedReader reader, PrintWriter writer) {
     this.prevayler = prevayler;
     this.tasks = prevayler.prevalentSystem();
     this.in = reader;
     this.out = writer;
   }
 
-  public void run() {
+  void run() {
     out.println("Task list - enter ‘help’ to list commands");
     while (true) {
       out.print("tasks> ");

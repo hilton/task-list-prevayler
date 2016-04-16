@@ -3,7 +3,7 @@ import java.io.Serializable;
 /**
  * A task list entry.
  */
-public class Task implements Serializable {
+class Task implements Serializable {
 
   private static final long serialVersionUID = 1l;
 
@@ -11,16 +11,16 @@ public class Task implements Serializable {
   private boolean done;
   private final String summary;
 
-  public Task(long id, String summary) {
+  Task(long id, String summary) {
     this.id = id;
     this.summary = summary;
   }
 
-  public long getId() {
+  long getId() {
     return id;
   }
 
-  public void complete() {
+  void complete() {
     done = true;
   }
 

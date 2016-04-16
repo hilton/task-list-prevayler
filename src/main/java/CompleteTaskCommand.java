@@ -6,14 +6,14 @@ import org.prevayler.Prevayler;
 /**
  * Prevayler command that completes a task.
  */
-public class CompleteTaskCommand extends PrevaylerCommand implements Serializable {
+class CompleteTaskCommand extends PrevaylerCommand implements Serializable {
 
   private static final long serialVersionUID = 1l;
-  public static final String COMMAND = "complete";
+  static final String COMMAND = "complete";
 
   private long id;
 
-  public CompleteTaskCommand(Prevayler prevayler, String commandLine) throws Exception {
+  CompleteTaskCommand(Prevayler prevayler, String commandLine) throws Exception {
     super(prevayler);
     if (!valid(commandLine)) {
       throw new IllegalArgumentException("Invalid task ID in command: " + commandLine);

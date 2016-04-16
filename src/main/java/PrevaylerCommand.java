@@ -6,13 +6,13 @@ import org.prevayler.Transaction;
 /**
  * A command that executes a Prevayler command.
  */
-public abstract class PrevaylerCommand implements Command, Transaction<Tasks> {
+abstract class PrevaylerCommand implements Command, Transaction<Tasks> {
 
   private static final long serialVersionUID = 1l;
 
   protected transient final Prevayler prevayler;
 
-  public PrevaylerCommand(Prevayler prevayler) {
+  PrevaylerCommand(Prevayler prevayler) {
     this.prevayler = prevayler;
   }
 

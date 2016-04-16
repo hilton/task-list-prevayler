@@ -3,13 +3,13 @@ import java.io.PrintWriter;
 /**
  * A command that displays the task list.
  */
-public class ShowCommand extends OutputCommand {
+class ShowCommand extends OutputCommand {
 
-  public static final String COMMAND = "show";
+  static final String COMMAND = "show";
 
   private Tasks tasks;
 
-  public ShowCommand(PrintWriter out, Tasks tasks) {
+  ShowCommand(PrintWriter out, Tasks tasks) {
     super(out);
     this.tasks = tasks;
   }

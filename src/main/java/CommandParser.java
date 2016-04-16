@@ -5,17 +5,17 @@ import org.prevayler.Prevayler;
 /**
  * Parses a command from user input.
  */
-public class CommandParser {
+class CommandParser {
 
   private final Prevayler<Tasks> prevayler;
   private final PrintWriter out;
 
-  public CommandParser(Prevayler<Tasks> prevayler, PrintWriter out) {
+  CommandParser(Prevayler<Tasks> prevayler, PrintWriter out) {
     this.prevayler = prevayler;
     this.out = out;
   }
 
-  public Command parse(String commandLine) throws Exception {
+  Command parse(String commandLine) throws Exception {
     if (commandLine == null) {
       throw new IllegalArgumentException("null command line");
     }

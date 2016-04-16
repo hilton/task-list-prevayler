@@ -5,14 +5,14 @@ import org.prevayler.Prevayler;
 /**
  * Prevayler command that adds a task to the task list.
  */
-public class AddTaskCommand extends PrevaylerCommand implements Serializable {
+class AddTaskCommand extends PrevaylerCommand implements Serializable {
 
   private static final long serialVersionUID = 1l;
-  public static final String COMMAND = "add";
+  static final String COMMAND = "add";
 
   private final String summary;
 
-  public AddTaskCommand(Prevayler prevayler, String commandLine) {
+  AddTaskCommand(Prevayler prevayler, String commandLine) {
     super(prevayler);
     if (!valid(commandLine)) {
       throw new IllegalArgumentException("invalid add command: " + commandLine);

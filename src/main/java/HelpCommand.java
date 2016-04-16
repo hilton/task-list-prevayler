@@ -3,11 +3,11 @@ import java.io.PrintWriter;
 /**
  * A command that displays the command help.
  */
-public class HelpCommand extends OutputCommand {
+class HelpCommand extends OutputCommand {
 
-  public static final String COMMAND = "help";
+  static final String COMMAND = "help";
 
-  public HelpCommand(PrintWriter out) {
+  HelpCommand(PrintWriter out) {
     super(out);
   }
 
@@ -18,6 +18,7 @@ public class HelpCommand extends OutputCommand {
     out.println("  add <task summary>");
     out.println("  complete <task ID>");
     out.println("  delete <task ID>");
+    out.println("  quit");
     out.println();
   }
 }

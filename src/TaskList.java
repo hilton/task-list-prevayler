@@ -1,5 +1,3 @@
-import static sun.management.Agent.error;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -73,11 +71,15 @@ public class TaskList {
       show();
       break;
     case "add":
-      String description = userInput.trim().substring(command.length() + 1);
-      prevayler.execute(new AddTaskCommand(description));
+      String summary = userInput.trim().substring(command.length() + 1);
+      prevayler.execute(new AddTaskCommand(summary));
+      break;
+    case "complete":
+      Long taskId = Long.valueOf(inputWords[1]);
+      prevayler.execute(new CompleteTaskCommand(taskId));
       break;
     default:
-      error(command);
+      reportError(command);
       break;
     }
   }
@@ -89,7 +91,7 @@ public class TaskList {
     tasks.list().forEach(task -> out.println(task));
   }
 
-  private void error(String command) {
+  private void reportError(String command) {
     out.printf("Unknown command: %s%n", command);
   }
 }

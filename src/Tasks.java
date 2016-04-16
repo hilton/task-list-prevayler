@@ -7,13 +7,15 @@ import java.util.List;
  */
 public class Tasks implements Serializable {
 
-  private final List<String> tasks = new ArrayList<>();
+  private final List<Task> tasks = new ArrayList<>();
+  private long nextId = 1L;
 
   public void add(String summary) {
-    tasks.add(summary);
+    tasks.add(new Task(nextId, summary));
+    nextId++;
   }
 
-  public List<String> list() {
+  public List<Task> list() {
     return tasks;
   }
 }

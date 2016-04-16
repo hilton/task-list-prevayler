@@ -29,7 +29,7 @@ class CommandParser {
     case HelpCommand.COMMAND:
       return new HelpCommand(out);
     case ShowCommand.COMMAND:
-      return new ShowCommand(out, prevayler.prevalentSystem());
+      return new ShowCommand(prevayler, out);
     case AddTaskCommand.COMMAND:
       return new AddTaskCommand(prevayler, commandLine);
     case CompleteTaskCommand.COMMAND:

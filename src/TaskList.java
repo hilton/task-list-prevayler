@@ -8,6 +8,9 @@ import java.io.PrintWriter;
 import org.prevayler.Prevayler;
 import org.prevayler.PrevaylerFactory;
 
+/**
+ * Command-line task list application.
+ */
 public class TaskList {
 
   private final BufferedReader in;
@@ -15,6 +18,9 @@ public class TaskList {
   private final Prevayler<Tasks> prevayler;
   private final Tasks tasks;
 
+  /**
+   * Starts the application and initialises Prevayler.
+   */
   public static void main(String[] args) {
     BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
     PrintWriter out = new PrintWriter(System.out);
@@ -53,6 +59,9 @@ public class TaskList {
     }
   }
 
+  /**
+   * Front-end for executing a command.
+   */
   private void execute(String userInput) {
     String[] inputWords = userInput.trim().split("\\s+");
     if (inputWords.length == 0) {
@@ -73,6 +82,9 @@ public class TaskList {
     }
   }
 
+  /**
+   * Displays the task list.
+   */
   private void show() {
     tasks.list().forEach(task -> out.println(task));
   }

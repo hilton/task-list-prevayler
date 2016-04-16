@@ -3,6 +3,9 @@ import java.util.Date;
 
 import org.prevayler.Transaction;
 
+/**
+ * Prevayler command that adds a task to the task list.
+ */
 public class AddTaskCommand implements Serializable, Transaction<Tasks> {
 
   private static final long serialVersionUID = 1l;

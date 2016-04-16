@@ -43,17 +43,17 @@ public class TaskList {
     while (true) {
       out.print("tasks> ");
       out.flush();
-      String userInput;
+      String commandLine;
       try {
-        userInput = in.readLine();
+        commandLine = in.readLine();
       } catch (IOException e) {
         throw new RuntimeException(e);
       }
-      if (userInput.equals("quit")) {
+      if (commandLine.equals("quit")) {
         break;
       }
-      if (!userInput.trim().isEmpty()) {
-        execute(userInput);
+      if (!commandLine.trim().isEmpty()) {
+        execute(commandLine);
       }
     }
   }
@@ -61,56 +61,18 @@ public class TaskList {
   /**
    * Front-end for executing a command.
    */
-  private void execute(String userInput) {
-    String[] inputWords = userInput.trim().split("\\s+");
-    if (inputWords.length == 0) {
-      return;
-    }
-    String command = inputWords[0];
+  private void execute(String commandLine) {
     try {
-      switch (command) {
-      case "help":
-        help();
-        break;
-      case "show":
-        show();
-        break;
-      case "add":
-        prevayler.execute(new AddTaskCommand(userInput));
-        break;
-      case "complete":
-        prevayler.execute(new CompleteTaskCommand(userInput));
-        break;
-      case "delete":
-        prevayler.execute(new DeleteTaskCommand(userInput));
-        break;
-      default:
-        reportError(command);
-        break;
-      }
+      CommandParser parser = new CommandParser(prevayler, out);
+      Command command = parser.parse(commandLine);
+      command.execute();
     }
     catch (Exception e) {
       reportError(e.getMessage());
     }
   }
 
-  private void help() {
-    out.println("Commands:");
-    out.println("  show");
-    out.println("  add <task summary>");
-    out.println("  complete <task ID>");
-    out.println("  delete <task ID>");
-    out.println();
-  }
-
-  /**
-   * Displays the task list.
-   */
-  private void show() {
-    tasks.list().forEach(task -> out.println(task));
-  }
-
-  private void reportError(String command) {
-    out.printf("Invalid command: %s%n", command);
+  private void reportError(String error) {
+    out.println(error);
   }
 }

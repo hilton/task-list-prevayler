@@ -39,6 +39,7 @@ public class TaskList {
   }
 
   public void run() {
+    out.println("Task list - enter ‘help’ to list commands");
     while (true) {
       out.print("tasks> ");
       out.flush();
@@ -66,22 +67,40 @@ public class TaskList {
       return;
     }
     String command = inputWords[0];
-    switch (command) {
-    case "show":
-      show();
-      break;
-    case "add":
-      String summary = userInput.trim().substring(command.length() + 1);
-      prevayler.execute(new AddTaskCommand(summary));
-      break;
-    case "complete":
-      Long taskId = Long.valueOf(inputWords[1]);
-      prevayler.execute(new CompleteTaskCommand(taskId));
-      break;
-    default:
-      reportError(command);
-      break;
+    try {
+      switch (command) {
+      case "help":
+        help();
+        break;
+      case "show":
+        show();
+        break;
+      case "add":
+        prevayler.execute(new AddTaskCommand(userInput));
+        break;
+      case "complete":
+        prevayler.execute(new CompleteTaskCommand(userInput));
+        break;
+      case "delete":
+        prevayler.execute(new DeleteTaskCommand(userInput));
+        break;
+      default:
+        reportError(command);
+        break;
+      }
     }
+    catch (Exception e) {
+      reportError(e.getMessage());
+    }
+  }
+
+  private void help() {
+    out.println("Commands:");
+    out.println("  show");
+    out.println("  add <task summary>");
+    out.println("  complete <task ID>");
+    out.println("  delete <task ID>");
+    out.println();
   }
 
   /**
@@ -92,6 +111,6 @@ public class TaskList {
   }
 
   private void reportError(String command) {
-    out.printf("Unknown command: %s%n", command);
+    out.printf("Invalid command: %s%n", command);
   }
 }

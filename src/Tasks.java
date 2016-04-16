@@ -7,6 +7,8 @@ import java.util.List;
  */
 public class Tasks implements Serializable {
 
+  private static final long serialVersionUID = 1l;
+
   private final List<Task> tasks = new ArrayList<>();
   private long nextId = 1L;
 
@@ -17,5 +19,9 @@ public class Tasks implements Serializable {
 
   public List<Task> list() {
     return tasks;
+  }
+
+  public void remove(long id) {
+    tasks.stream().filter(task -> task.getId() == id).findFirst().ifPresent(task -> tasks.remove(task));
   }
 }

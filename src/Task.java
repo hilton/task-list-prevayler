@@ -5,6 +5,8 @@ import java.io.Serializable;
  */
 public class Task implements Serializable {
 
+  private static final long serialVersionUID = 1l;
+
   private long id;
   private boolean done;
   private final String summary;

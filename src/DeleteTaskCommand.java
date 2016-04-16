@@ -6,13 +6,13 @@ import org.prevayler.Transaction;
 /**
  * Prevayler command that completes a task.
  */
-public class CompleteTaskCommand implements Serializable, Transaction<Tasks> {
+public class DeleteTaskCommand implements Serializable, Transaction<Tasks> {
 
   private static final long serialVersionUID = 1l;
 
   private long id;
 
-  public CompleteTaskCommand(String userInput) throws Exception {
+  public DeleteTaskCommand(String userInput) throws Exception {
     String[] inputWords = userInput.trim().split("\\s+");
     if (inputWords.length < 2) {
       throw new Exception("Invalid command: " + userInput);
@@ -22,6 +22,6 @@ public class CompleteTaskCommand implements Serializable, Transaction<Tasks> {
 
   @Override
   public void executeOn(Tasks tasks, Date date) {
-    tasks.list().stream().filter(task -> task.getId() == id).forEach(task -> task.complete());
+    tasks.remove(id);
   }
 }

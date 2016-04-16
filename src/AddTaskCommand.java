@@ -12,8 +12,8 @@ public class AddTaskCommand implements Serializable, Transaction<Tasks> {
 
   private final String summary;
 
-  public AddTaskCommand(String summary) {
-    this.summary = summary;
+  public AddTaskCommand(String userInput) {
+    this.summary = userInput.trim().substring(userInput.indexOf(" ") + 1);
   }
 
   @Override
